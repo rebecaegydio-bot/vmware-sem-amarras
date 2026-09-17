@@ -451,12 +451,17 @@
   html { scroll-behavior:smooth; }
   body { margin:0; font-family:var(--font-body); background:#eef1f7; color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; }
   .hero { position:relative; background:var(--navy); color:#fff; padding:0; overflow:hidden; }
-  .hero-grad { position:absolute; inset:0; background:
-      radial-gradient(circle at 12% 20%, rgba(232,195,255,.55), transparent 42%),
-      radial-gradient(circle at 30% 75%, rgba(174,186,255,.5), transparent 45%),
-      radial-gradient(circle at 85% 25%, rgba(26,165,254,.55), transparent 48%),
-      radial-gradient(circle at 70% 90%, rgba(137,192,255,.4), transparent 45%);
-      opacity:.9; }
+  .hero-grad { position:absolute; inset:0; opacity:.9; }
+  .hero-grad .blob { position:absolute; border-radius:50%; filter:blur(10px); will-change:transform; }
+  .hero-grad .b1 { top:-24%; left:-18%; width:84%; height:130%; background:radial-gradient(circle, rgba(232,195,255,.55), transparent 68%); animation:blobPulse 7s ease-in-out infinite; }
+  .hero-grad .b2 { top:18%;  left:8%;   width:80%; height:132%; background:radial-gradient(circle, rgba(174,186,255,.5), transparent 68%);  animation:blobPulse 7s ease-in-out infinite; animation-delay:-3.5s; }
+  .hero-grad .b3 { top:-20%; left:44%;  width:88%; height:138%; background:radial-gradient(circle, rgba(26,165,254,.55), transparent 68%); animation:blobPulse 8s ease-in-out infinite; animation-delay:-2s; }
+  .hero-grad .b4 { top:22%;  left:36%;  width:82%; height:132%; background:radial-gradient(circle, rgba(137,192,255,.4), transparent 68%);  animation:blobPulse 8s ease-in-out infinite; animation-delay:-6s; }
+  @keyframes blobPulse {
+    0%,100% { transform:scale(.72); opacity:.55; }
+    50%     { transform:scale(1.15); opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hero-grad .blob { animation:none; } }
   .hero-inner { position:relative; z-index:2; max-width:820px; margin:0 auto; padding:44px 28px 56px; text-align:center; }
   .realizacao-label { font-family:var(--font-head); font-weight:500; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--sky); margin-bottom:16px; }
   .logo-cards { display:flex; align-items:stretch; justify-content:center; gap:18px; flex-wrap:wrap; margin-bottom:38px; }
@@ -529,7 +534,7 @@
 </head>
 <body>
   <header class="hero">
-    <div class="hero-grad"></div>
+    <div class="hero-grad"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span></div>
     <div class="hero-inner">
       <div class="realizacao-label">Realização</div>
       <div class="logo-cards">
